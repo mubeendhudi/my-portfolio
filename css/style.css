@@ -272,7 +272,7 @@ section[id],
   object-fit: cover;
   object-position: center 20%;
   border-radius: 50%;
-  border: 3px solid var(--bg);
+  border: 6px solid var(--bg);
   transition: transform .4s;
 }
 
@@ -331,6 +331,7 @@ section[id],
 
 .marquee {
   overflow: hidden;
+  padding-top: 3px;
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
   mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
 }
@@ -575,31 +576,48 @@ li+li {
   }
 
   .site-header {
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
   }
 
+  /* Dropdown panel: floats over the page, so the header and hero never change height */
   nav {
-    flex: 1 0 100%;
+    position: absolute;
+    top: calc(100% + .5rem);
+    left: 1.25rem;
+    right: 1.25rem;
     flex-direction: column;
     gap: 0;
-    overflow: hidden;
-    max-height: 0;
+    max-width: none;
+    overflow: visible;
+    padding: .35rem 1rem;
+    background: rgba(12, 18, 38, .97);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    box-shadow: 0 20px 50px -12px rgba(0, 0, 0, .7);
     opacity: 0;
     visibility: hidden;
-    transition: max-height .35s ease, opacity .25s ease, visibility 0s linear .35s;
+    pointer-events: none;
+    transform: translateY(-10px) scale(.98);
+    transform-origin: top right;
+    transition: opacity .25s ease, transform .3s ease, visibility 0s linear .3s;
   }
 
   .is-open nav {
-    max-height: 24rem;
     opacity: 1;
     visibility: visible;
+    pointer-events: auto;
+    transform: none;
     transition-delay: 0s;
   }
 
   nav a {
-    padding: .85rem 0;
+    padding: .85rem .25rem;
     font-size: 1.05rem;
     border-top: 1px solid var(--line);
+  }
+
+  nav a:first-child {
+    border-top: 0;
   }
 
   nav a::after {
@@ -620,9 +638,9 @@ li+li {
 
   .hero-photo {
     order: -1;
-    margin-left: 28px;
+    margin-left: 26px;
     justify-self: start;
-    width: clamp(220px, 58vw, 300px);
+    width: clamp(180px, 58vw, 260px);
   }
 
   section[id] {
@@ -639,6 +657,9 @@ li+li {
   .btn {
     flex: 1 1 100%;
     text-align: center;
+  }
+  .hero-photo {
+    width: clamp(200px, 60vw, 240px);
   }
 
   .project {

@@ -4,8 +4,15 @@ const P = PORTFOLIO;
 
 const list = (items) => `<ul>${items.map((i) => `<li>${i}</li>`).join("")}</ul>`;
 
+const chips = (items, small = "") => items.map((i) => `<span class="chip ${small}">${i}</span>`).join("");
+
 const renderSkills = () =>
-  P.skills.map((s) => `<div class="skill-group"><h3>${s.group}</h3>${list(s.items)}</div>`).join("");
+  P.skills.map((s) => `<div class="skill-group"><h3>${s.group}</h3><div class="chips">${chips(s.items)}</div></div>`).join("");
+
+/* Looping skill strips: each group becomes one row, every second row runs in reverse. */
+const renderMarquee = () =>
+  P.skills.map((s, i) => `<div class="marquee${i % 2 ? " reverse" : ""}" aria-hidden="true">
+    <div class="track">${chips(s.items).repeat(4)}</div></div>`).join("");
 
 const renderProjects = () =>
   P.projects.map((p) => `
@@ -13,7 +20,7 @@ const renderProjects = () =>
       <div class="row"><h3>${p.title}</h3><span class="meta">${p.year}</span></div>
       <p>${p.summary}</p>
       ${list(p.points)}
-      <p class="meta">${p.stack.join(", ")}</p>
+      <div class="chips">${chips(p.stack, "small")}</div>
       ${p.links.map((l) => `<a class="text-link" href="${l.url}" target="_blank" rel="noopener">${l.label}</a>`).join(" ")}
     </article>`).join("");
 
@@ -40,6 +47,9 @@ $("brand").textContent = P.name;
 $("hero-title").textContent = P.heroTitle;
 $("hero-intro").textContent = P.heroIntro;
 $("cv-link").href = P.contact.cv;
+$("photo").src = P.photo;
+$("photo").alt = `${P.name}, ${P.role}`;
+$("marquees").innerHTML = renderMarquee();
 $("about-body").innerHTML = P.about.map((t) => `<p>${t}</p>`).join("");
 $("skills-body").innerHTML = renderSkills();
 $("projects-body").innerHTML = renderProjects();

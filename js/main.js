@@ -56,3 +56,19 @@ $("projects-body").innerHTML = renderProjects();
 $("experience-body").innerHTML = renderExperience();
 $("contact-body").innerHTML = renderContact();
 $("footer-text").textContent = `© ${new Date().getFullYear()} ${P.name}. ${P.role}, ${P.location}.`;
+
+/* Mobile menu: open/close, close on link click, outside click, Escape or when resized to desktop. */
+const header = document.querySelector(".site-header");
+const toggle = $("nav-toggle");
+
+const setMenu = (open) => {
+  header.classList.toggle("is-open", open);
+  toggle.setAttribute("aria-expanded", String(open));
+  toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+};
+
+toggle.addEventListener("click", () => setMenu(!header.classList.contains("is-open")));
+$("site-nav").addEventListener("click", (e) => { if (e.target.closest("a")) setMenu(false); });
+document.addEventListener("click", (e) => { if (!header.contains(e.target)) setMenu(false); });
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") setMenu(false); });
+window.addEventListener("resize", () => { if (window.innerWidth > 700) setMenu(false); });

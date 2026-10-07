@@ -272,7 +272,7 @@ section[id],
   object-fit: cover;
   object-position: center 20%;
   border-radius: 50%;
-  border: 4px solid var(--bg);
+  border: 3px solid var(--bg);
   transition: transform .4s;
 }
 
@@ -331,7 +331,6 @@ section[id],
 
 .marquee {
   overflow: hidden;
-  padding-top: 3px;
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
   mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
 }
@@ -511,6 +510,107 @@ li+li {
   font-size: .95rem;
 }
 
+/* Mobile menu toggle (hidden on desktop) */
+.nav-toggle {
+  display: none;
+  position: relative;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--card);
+  cursor: pointer;
+  transition: border-color .2s;
+}
+
+.nav-toggle:hover {
+  border-color: var(--accent);
+}
+
+.nav-toggle:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.nav-toggle span {
+  position: absolute;
+  left: 11px;
+  right: 11px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--ink);
+  transition: top .3s ease, transform .3s ease, opacity .2s ease;
+}
+
+.nav-toggle span:nth-child(1) {
+  top: 14px;
+}
+
+.nav-toggle span:nth-child(2) {
+  top: 21px;
+}
+
+.nav-toggle span:nth-child(3) {
+  top: 28px;
+}
+
+.is-open .nav-toggle span:nth-child(1) {
+  top: 21px;
+  transform: rotate(45deg);
+}
+
+.is-open .nav-toggle span:nth-child(2) {
+  opacity: 0;
+}
+
+.is-open .nav-toggle span:nth-child(3) {
+  top: 21px;
+  transform: rotate(-45deg);
+}
+
+@media (max-width: 700px) {
+  .nav-toggle {
+    display: block;
+  }
+
+  .site-header {
+    flex-wrap: wrap;
+  }
+
+  nav {
+    flex: 1 0 100%;
+    flex-direction: column;
+    gap: 0;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: max-height .35s ease, opacity .25s ease, visibility 0s linear .35s;
+  }
+
+  .is-open nav {
+    max-height: 24rem;
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0s;
+  }
+
+  nav a {
+    padding: .85rem 0;
+    font-size: 1.05rem;
+    border-top: 1px solid var(--line);
+  }
+
+  nav a::after {
+    display: none;
+  }
+
+  nav a:hover {
+    color: var(--accent);
+  }
+}
+
 /* Responsive */
 @media (max-width: 860px) {
   .hero {
@@ -521,7 +621,6 @@ li+li {
   .hero-photo {
     order: -1;
     justify-self: start;
-    margin-left: 28px;
     width: clamp(220px, 58vw, 300px);
   }
 

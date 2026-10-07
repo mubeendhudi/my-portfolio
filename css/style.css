@@ -521,7 +521,8 @@ li+li {
   .hero-photo {
     order: -1;
     justify-self: start;
-    width: clamp(150px, 42vw, 220px);
+    margin-left: 28px;
+    width: clamp(220px, 58vw, 300px);
   }
 
   section[id] {

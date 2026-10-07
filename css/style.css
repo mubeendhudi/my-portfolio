@@ -620,6 +620,7 @@ li+li {
 
   .hero-photo {
     order: -1;
+    margin-left: 28px;
     justify-self: start;
     width: clamp(220px, 58vw, 300px);
   }

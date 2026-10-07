@@ -9,7 +9,7 @@ const PORTFOLIO = {
   name: "Mubeen Yousaf",
   role: "Frontend & Shopify Developer",
   location: "Lahore, Pakistan",
-  photo: "assets/profile.jpg", // replace the file in /assets to change your photo
+  photo: "assets/profile.jpeg", // replace the file in /assets to change your photo
 
   heroTitle: "I build Shopify storefronts and fast, responsive interfaces.",
   heroIntro:

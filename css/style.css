@@ -131,8 +131,8 @@ h3 {
 }
 
 .btn-hire {
-  padding: .3rem .95rem;
-  font-size: 1.2rem;
+  padding: .5rem 1.15rem;
+  font-size: .95rem;
 }
 
 .brand {
@@ -343,7 +343,6 @@ section[id],
 
 .marquee {
   overflow: hidden;
-  padding: 3px;
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
   mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
 }
@@ -603,10 +602,10 @@ li+li {
   }
 
   .btn-hire {
-    padding: .5rem .95rem;
-    font-size: .9rem;
+    display: none;
   }
 
+  /* "Hire me" is desktop-only */
   /* Dropdown panel: floats over the page, so the header and hero never change height */
   nav {
     position: absolute;

@@ -50,6 +50,47 @@ const PORTFOLIO = {
     }
   ],
 
+  /* Live project cards.
+     preview: "live"                       -> shows the real site as a small preview (works for GitHub Pages)
+     preview: "assets/previews/name.jpg"   -> shows a screenshot (needed for Shopify, which blocks embedding)
+     password: only for password-protected Shopify stores. Remove the line if none. */
+  liveProjects: [
+    {
+      title: "Agency Website",
+      type: "Frontend",
+      summary: "Responsive agency website built with HTML, CSS and JavaScript.",
+      stack: ["HTML", "CSS", "JavaScript"],
+      url: "https://mubeendhudi.github.io/agency-website/",
+      preview: "live"
+    },
+    {
+      title: "Naho Trading",
+      type: "Frontend",
+      summary: "Responsive business website for a trading company.",
+      stack: ["HTML", "CSS", "JavaScript"],
+      url: "https://mubeendhudi.github.io/naho-trading/",
+      preview: "live"
+    },
+    {
+      title: "MYD Store",
+      type: "Shopify",
+      summary: "Shopify storefront with custom theme sections.",
+      stack: ["Shopify", "Liquid", "CSS"],
+      url: "https://myd-store-8iycb5qv.myshopify.com/",
+      password: "0000",
+      preview: "assets/previews/myd-store.jpg"
+    },
+    {
+      title: "Shopify Store 2",
+      type: "Shopify",
+      summary: "Shopify storefront with custom theme sections.",
+      stack: ["Shopify", "Liquid", "CSS"],
+      url: "https://store-872lahl8.myshopify.com/",
+      password: "0000",
+      preview: "assets/previews/store-2.jpg"
+    }
+  ],
+
   experience: [
     { title: "Frontend Developer Intern", place: "Fixelcloud", period: "2026", text: "Built responsive interfaces with HTML, CSS, JavaScript and Liquid, turned Figma designs into production code, and customized Shopify theme sections for speed and compatibility." },
     { title: "BS in Information Technology", place: "The Islamia University of Bahawalpur", period: "2022 – 2026", text: "" }

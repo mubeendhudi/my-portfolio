@@ -24,6 +24,28 @@ const renderProjects = () =>
       ${p.links.map((l) => `<a class="text-link" href="${l.url}" target="_blank" rel="noopener">${l.label}</a>`).join(" ")}
     </article>`).join("");
 
+/* Live project cards: "live" previews embed the site in a scaled-down iframe, anything else is a screenshot path. */
+const renderLive = () =>
+  P.liveProjects.map((p) => {
+    const media = p.preview === "live"
+      ? `<iframe src="${p.url}" title="${p.title} preview" loading="lazy" tabindex="-1" sandbox="allow-scripts allow-same-origin"></iframe>`
+      : `<img class="shot" src="${p.preview}" alt="" loading="lazy">`;
+    return `
+    <article class="live-card">
+      <a class="preview" href="${p.url}" target="_blank" rel="noopener noreferrer" aria-label="Open ${p.title} in a new tab">
+        <div class="frame">${media}</div>
+        <span class="open-hint">Open site ↗</span>
+      </a>
+      <div class="live-info">
+        <div class="row"><h3>${p.title}</h3><span class="chip small">${p.type}</span></div>
+        <p>${p.summary}</p>
+        <div class="chips">${chips(p.stack, "small")}</div>
+        ${p.password ? `<p class="meta">Store password: <code>${p.password}</code></p>` : ""}
+        <div class="actions"><a class="btn btn-primary" href="${p.url}" target="_blank" rel="noopener noreferrer">Open live site</a></div>
+      </div>
+    </article>`;
+  }).join("");
+
 const renderExperience = () =>
   P.experience.map((e) => `
     <article class="project">
@@ -54,7 +76,22 @@ $("marquees").innerHTML = renderMarquee();
 $("about-body").innerHTML = P.about.map((t) => `<p>${t}</p>`).join("");
 $("skills-body").innerHTML = renderSkills();
 $("projects-body").innerHTML = renderProjects();
+$("live-body").innerHTML = renderLive();
 $("experience-body").innerHTML = renderExperience();
+
+/* Iframe previews render at 1280x800 and are scaled down to fit the card width. */
+const scaler = new ResizeObserver((entries) =>
+  entries.forEach(({ target, contentRect }) => {
+    const frame = target.querySelector("iframe");
+    if (frame) frame.style.transform = `scale(${contentRect.width / 1280})`;
+  })
+);
+document.querySelectorAll(".frame").forEach((el) => scaler.observe(el));
+
+/* If a screenshot file is missing, show a placeholder instead of a broken image. */
+document.querySelectorAll(".shot").forEach((img) =>
+  img.addEventListener("error", () => img.closest(".frame").classList.add("is-missing"))
+);
 $("contact-body").innerHTML = renderContact();
 $("footer-text").textContent = `© ${new Date().getFullYear()} ${P.name}. ${P.role}, ${P.location}.`;
 

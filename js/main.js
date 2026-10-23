@@ -67,6 +67,7 @@ const renderContact = () => {
 
 $("brand").textContent = P.name;
 $("hero-title").textContent = P.heroTitle;
+$("hero-subtitle").textContent = P.heroSubtitle;
 $("hero-intro").textContent = P.heroIntro;
 $("cv-link").href = P.contact.cv;
 $("hire-btn").href = `mailto:${P.contact.email}?subject=${encodeURIComponent("Project or job opportunity")}`;

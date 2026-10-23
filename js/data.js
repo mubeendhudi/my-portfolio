@@ -11,7 +11,8 @@ const PORTFOLIO = {
   location: "Lahore, Pakistan",
   photo: "assets/profile.jpeg", // replace the file in /assets to change your photo
 
-  heroTitle: "I'm Mubeen Yousaf — I build Shopify storefronts and fast, responsive interfaces.",
+  heroTitle: "I'm Mubeen Yousaf",
+  heroSubtitle: "I build Shopify storefronts and fast, responsive interfaces",
   heroIntro:
     "I'm a frontend developer working with HTML, CSS, JavaScript, React and Liquid. I'm open to remote jobs and freelance projects, and I'm learning full-stack development next.",
 

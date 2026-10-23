@@ -78,7 +78,7 @@ const PORTFOLIO = {
       stack: ["Shopify", "Liquid", "CSS"],
       url: "https://myd-store-8iycb5qv.myshopify.com/",
       password: "0000",
-      preview: "assets/previews/myd-store.jpg"
+      preview: "assets/previews/store-1.png"
     },
     {
       title: "Shopify Store 2",
@@ -87,7 +87,7 @@ const PORTFOLIO = {
       stack: ["Shopify", "Liquid", "CSS"],
       url: "https://store-872lahl8.myshopify.com/",
       password: "0000",
-      preview: "assets/previews/store-2.jpg"
+      preview: "assets/previews/store-2.png"
     }
   ],
 

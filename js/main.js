@@ -153,7 +153,7 @@ $("hero-title").textContent = P.heroTitle;
 $("hero-subtitle").textContent = P.heroSubtitle;
 $("hero-intro").textContent = P.heroIntro;
 $("cv-link").href = P.contact.cv;
-$("hire-btn").href = `mailto:${P.contact.email}?subject=${encodeURIComponent("Project or job opportunity")}`;
+$("hire-btn").href = "#contact";
 $("photo").src = P.photo;
 $("photo").alt = `${P.name}, ${P.role}`;
 $("marquees").innerHTML = renderMarquee();
@@ -177,6 +177,7 @@ document.querySelectorAll(".shot").forEach((img) =>
   img.addEventListener("error", () => img.closest(".frame").classList.add("is-missing"))
 );
 $("contact-body").innerHTML = renderContact();
+setupContactForm();
 $("footer-text").textContent = `© ${new Date().getFullYear()} ${P.name}. ${P.role}, ${P.location}.`;
 
 /* Mobile menu: open/close, close on link click, outside click, Escape or when resized to desktop. */

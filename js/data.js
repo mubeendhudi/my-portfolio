@@ -102,6 +102,6 @@ const PORTFOLIO = {
     phone: "+92 303 6994048",
     linkedin: "https://www.linkedin.com/in/mubeen-yousaf/",
     github: "https://github.com/mubeendhudi",
-    cv: "assets/Mubeen_Yousaf_CV.pdf" // put your CV PDF in the assets folder with this name
+    cv: "assets/Mubeen Yousaf Dev.pdf" // put your CV PDF in the assets folder with this name
   }
 };

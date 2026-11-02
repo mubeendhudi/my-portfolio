@@ -103,8 +103,6 @@ const PORTFOLIO = {
     linkedin: "https://www.linkedin.com/in/mubeen-yousaf/",
     github: "https://github.com/mubeendhudi",
     cv: "assets/Mubeen Yousaf Dev.pdf", // put your CV PDF in the assets folder with this name
-
-    // Contact form: get a free key from https://web3forms.com (enter your email, the key arrives by mail)
     formKey: "514031c6-f51a-479a-bde9-2ad550df5b59",
     // Optional: Google Ads conversion, e.g. "AW-123456789/AbCdEfGh". Leave "" until Ads is set up.
     adsConversion: ""

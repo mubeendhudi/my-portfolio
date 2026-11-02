@@ -56,7 +56,15 @@ const renderExperience = () =>
 
 const renderContact = () => {
   const c = P.contact;
-  return `<p>Have a project or a role in mind? Send me a message.</p>
+  return `<div class="contact-info">
+      <p>Have a project or a role in mind? Send me a message.</p>
+      <ul class="contact-list">
+        <li><a href="mailto:${c.email}">${c.email}</a></li>
+        <li><a href="tel:${c.phone.replace(/\s/g, "")}">${c.phone}</a></li>
+        <li><a href="${c.linkedin}" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="${c.github}" target="_blank" rel="noopener">GitHub</a></li>
+      </ul>
+    </div>
     <form class="contact-form" id="contact-form">
       <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
       <div class="field">
@@ -82,49 +90,43 @@ const renderContact = () => {
       </div>
       <button class="btn btn-primary" id="cf-submit" type="submit">Send message</button>
       <p class="form-status" id="cf-status" role="status" aria-live="polite"></p>
-    </form>
-    <ul class="contact-list">
-      <li><a href="mailto:${c.email}">${c.email}</a></li>
-      <li><a href="tel:${c.phone.replace(/\s/g, "")}">${c.phone}</a></li>
-      <li><a href="${c.linkedin}" target="_blank" rel="noopener">LinkedIn</a></li>
-      <li><a href="${c.github}" target="_blank" rel="noopener">GitHub</a></li>
-    </ul>`;
+    </form>`;
 };
-
+ 
 /* Contact form: sends the data to the owner's email through Web3Forms (no backend needed). */
 const setupContactForm = () => {
   const form = $("contact-form");
   const status = $("cf-status");
   const button = $("cf-submit");
   const c = P.contact;
-
+ 
   const show = (text, type) => {
     status.textContent = text;
     status.className = `form-status ${type}`;
   };
-
+ 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     if (!c.formKey || c.formKey.startsWith("YOUR_")) {
       show(`The form is not set up yet. Please email me at ${c.email}.`, "error");
       return;
     }
-
+ 
     const phone = form.elements.phone.value.trim();
     if (phone && !/^[0-9+\-\s()]{7,20}$/.test(phone)) {
       show("Please enter a valid phone number or leave it empty.", "error");
       return;
     }
-
+ 
     const data = new FormData(form);
     data.append("access_key", c.formKey);
     data.append("subject", `New inquiry: ${data.get("service")} (portfolio)`);
     data.append("from_name", "Portfolio contact form");
-
+ 
     button.disabled = true;
     button.textContent = "Sending...";
     show("", "");
-
+ 
     try {
       const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
@@ -133,7 +135,7 @@ const setupContactForm = () => {
       });
       const json = await res.json();
       if (!json.success) throw new Error(json.message || "Request failed");
-
+ 
       form.reset();
       show("Thanks! Your message was sent. I will reply soon.", "success");
       if (window.gtag && c.adsConversion) window.gtag("event", "conversion", { send_to: c.adsConversion });
@@ -175,7 +177,6 @@ document.querySelectorAll(".shot").forEach((img) =>
   img.addEventListener("error", () => img.closest(".frame").classList.add("is-missing"))
 );
 $("contact-body").innerHTML = renderContact();
-setupContactForm();
 $("footer-text").textContent = `© ${new Date().getFullYear()} ${P.name}. ${P.role}, ${P.location}.`;
 
 /* Mobile menu: open/close, close on link click, outside click, Escape or when resized to desktop. */

@@ -1,0 +1,2 @@
+# Send the old Netlify subdomain to the custom domain (required by Google Search Console "Change of Address")
+https://mubeenyousaf.netlify.app/* https://mubeenyousaf.site/:splat 301!

@@ -6,22 +6,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="dark">
   <meta name="google-site-verification" content="ZWX2jXTR1oU8TYgpOA-YUi-xn_RgdnuWv3qHmWrV8fo" />
-  <title>Mubeen Yousaf | Web Developer & Shopify Developer</title>
+  <title>Mubeen Yousaf | Frontend & Shopify Developer</title>
   <meta name="description"
-    content="Explore the portfolio of Mubeen Yousaf, a web developer and Shopify developer skilled in HTML, WordPress, and creative digital projects.">
+    content="Portfolio of Mubeen Yousaf, a frontend and Shopify developer building responsive interfaces and custom Liquid theme sections with HTML, CSS, JavaScript and React.">
   <meta name="author" content="Mubeen Yousaf">
   <link rel="canonical" href="https://mubeenyousaf.netlify.app/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Source+Sans+3:wght@400;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Bricolage+Grotesque:wght@600;700&family=Source+Sans+3:wght@400;600&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-  <!-- Fixed animated background -->
+  <!-- Fixed animated background (from the reference hero) -->
   <div class="bg" aria-hidden="true"><span></span><span></span><span></span></div>
+
+  <a class="skip-link" href="#about">Skip to content</a>
 
   <header class="site-header">
     <a class="brand" href="#top" id="brand"></a>
@@ -34,7 +36,7 @@
       <a href="#contact">Contact</a>
     </nav>
     <div class="header-actions">
-      <a class="btn btn-primary btn-hire" id="hire-btn" href="#contact">Hire me</a>
+      <a class="btn btn-primary btn-hire" href="#contact">Hire me</a>
       <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false"
         aria-controls="site-nav">
         <span></span><span></span><span></span>
@@ -43,51 +45,69 @@
   </header>
 
   <main id="top">
-    <section class="hero">
-      <div class="hero-text">
-        <p class="status"><span class="dot"></span>Open to remote jobs and freelance work</p>
+    <!-- Hero: the left side is the rendered section, the right side is the Liquid that would produce it.
+         Hovering a code line outlines the matching element (see setupInspector in main.js). -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-render" id="hero-render">
+        <p class="status" id="hero-status"><span class="dot"></span><span id="status-text"></span></p>
         <h1 id="hero-title"></h1>
-        <h2 id="hero-subtitle"></h2>
         <p class="lead" id="hero-intro"></p>
-        <div class="actions">
-          <a class="btn btn-primary" href="#contact">Contact
-            me</a>
+        <div class="actions" id="hero-actions">
+          <a class="btn btn-primary" href="#contact">Contact me</a>
           <a class="btn" id="cv-link" href="#" download>Download CV</a>
         </div>
+        <div class="byline" id="hero-byline">
+          <span class="ring"><img id="photo" alt="" width="88" height="88"></span>
+          <p><strong id="byline-name"></strong><span id="byline-meta"></span></p>
+        </div>
+        <div class="inspect" id="inspect" aria-hidden="true"><span class="inspect-tag" id="inspect-tag"></span></div>
       </div>
-      <figure class="hero-photo"><img id="photo" alt="" width="320" height="320"></figure>
+
+      <figure class="code-panel">
+        <figcaption>
+          <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="file">sections/hero.liquid</span>
+        </figcaption>
+        <ol class="code" id="hero-code"></ol>
+        <p class="code-hint">How I would write this hero as a Shopify section. Point at a line to see what it renders.</p>
+      </figure>
     </section>
 
-    <div class="marquees" id="marquees"></div>
-
-    <section id="about">
+    <section id="about" class="block">
       <h2>About</h2>
-      <div id="about-body" class="body"></div>
+      <div id="about-body" class="prose"></div>
     </section>
-    <section id="skills">
+
+    <section id="skills" class="block">
       <h2>Skills</h2>
-      <div id="skills-body" class="body"></div>
+      <div id="skills-body" class="skills"></div>
     </section>
-    <section id="projects">
+
+    <section id="projects" class="block">
       <h2>Projects</h2>
-      <div id="projects-body" class="body wide"></div>
+      <div id="projects-body"></div>
     </section>
-    <section id="live">
+
+    <section id="live" class="block">
       <h2>Live projects</h2>
-      <div id="live-body" class="body wide"></div>
+      <p class="section-note">These are the real sites, loaded live. Switch the screen size to check the responsive layout.</p>
+      <div id="live-body" class="live-grid"></div>
     </section>
-    <section id="experience">
+
+    <section id="experience" class="block">
       <h2>Experience and education</h2>
-      <div id="experience-body" class="body wide"></div>
+      <ol id="experience-body" class="timeline"></ol>
     </section>
-    <section id="contact">
+
+    <section id="contact" class="block">
       <h2>Contact</h2>
-      <div id="contact-body" class="body"></div>
+      <div id="contact-body" class="contact"></div>
     </section>
   </main>
 
   <footer class="site-footer">
     <p id="footer-text"></p>
+    <p id="footer-built"></p>
   </footer>
 
   <script src="js/data.js"></script>

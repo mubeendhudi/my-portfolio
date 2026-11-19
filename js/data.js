@@ -10,9 +10,10 @@ const PORTFOLIO = {
   role: "Frontend & Shopify Developer",
   location: "Lahore, Pakistan",
   photo: "assets/profile.jpeg", // replace the file in /assets to change your photo
+  status: "Open to remote jobs and freelance work",
+  repo: "https://github.com/mubeendhudi/my-portfolio", // "View source" link in the footer
 
-  heroTitle: "I'm Mubeen Yousaf",
-  heroSubtitle: "I build Shopify storefronts and fast, responsive interfaces",
+  heroTitle: "I build Shopify storefronts and fast, responsive interfaces",
   heroIntro:
     "I'm a frontend developer working with HTML, CSS, JavaScript, React and Liquid. I'm open to remote jobs and freelance projects, and I'm learning full-stack development next.",
 

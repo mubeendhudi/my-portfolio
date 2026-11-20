@@ -1,116 +1,8 @@
-/* Builds the page from PORTFOLIO (see js/data.js). No need to edit this file for content changes. */
+/* Page behaviour. Content comes from js/data.js and is turned into HTML by js/render.js. */
 const $ = (id) => document.getElementById(id);
 const P = PORTFOLIO;
 
-const list = (items) => `<ul>${items.map((i) => `<li>${i}</li>`).join("")}</ul>`;
-
-const chips = (items, extra = "") => items.map((i) => `<li class="chip ${extra}">${i}</li>`).join("");
-
-/* Skills: the first group is what I use now (solid chips), later groups are in progress (dashed chips). */
-const renderSkills = () =>
-  P.skills.map((s, i) => `
-    <div class="skill-group">
-      <h3>${s.group}</h3>
-      <ul class="chips">${chips(s.items, i ? "is-next" : "")}</ul>
-    </div>`).join("");
-
-const renderProjects = () =>
-  P.projects.map((p) => `
-    <article class="project">
-      <div class="project-head">
-        <h3>${p.title}</h3>
-        <span class="meta">${p.year}</span>
-      </div>
-      <div class="project-body">
-        <p>${p.summary}</p>
-        ${list(p.points)}
-        <ul class="chips">${chips(p.stack, "small")}</ul>
-        ${p.links.map((l) => `<a class="text-link" href="${l.url}" target="_blank" rel="noopener">${l.label}</a>`).join(" ")}
-      </div>
-    </article>`).join("");
-
-/* Live project cards, drawn as a small browser window.
-   "live" previews embed the real site in an iframe with a screen-size switch; anything else is a screenshot path. */
-const DEVICES = { mobile: [375, 667], tablet: [768, 1024], desktop: [1280, 800] };
-
-const renderLive = () =>
-  P.liveProjects.map((p) => {
-    const isLive = p.preview === "live";
-    const media = isLive
-      ? `<iframe src="${p.url}" title="${p.title} preview" loading="lazy" tabindex="-1" sandbox="allow-scripts allow-same-origin"></iframe>`
-      : `<img class="shot" src="${p.preview}" alt="" loading="lazy">`;
-    const sizes = isLive
-      ? `<div class="sizes" role="group" aria-label="Preview screen size for ${p.title}">
-          ${Object.keys(DEVICES).map((d) =>
-            `<button type="button" data-device="${d}" aria-pressed="${d === "desktop"}">${d[0].toUpperCase() + d.slice(1)}</button>`).join("")}
-        </div>`
-      : `<span class="meta">Screenshot</span>`;
-    return `
-    <article class="live-card">
-      <div class="browser-bar">
-        <span class="url">${p.url.replace(/^https?:\/\//, "").replace(/\/$/, "")}</span>
-        ${sizes}
-      </div>
-      <a class="preview" href="${p.url}" target="_blank" rel="noopener noreferrer" aria-label="Open ${p.title} in a new tab">
-        <div class="frame" data-device="desktop">${media}</div>
-      </a>
-      <div class="live-info">
-        <div class="row"><h3>${p.title}</h3><span class="chip small">${p.type}</span></div>
-        <p>${p.summary}</p>
-        <ul class="chips">${chips(p.stack, "small")}</ul>
-        ${p.password ? `<p class="meta">Store password: <code>${p.password}</code></p>` : ""}
-        <div class="actions"><a class="btn" href="${p.url}" target="_blank" rel="noopener noreferrer">Open live site</a></div>
-      </div>
-    </article>`;
-  }).join("");
-
-const renderExperience = () =>
-  P.experience.map((e) => `
-    <li>
-      <span class="meta">${e.period}</span>
-      <h3>${e.title}</h3>
-      <p class="meta">${e.place}</p>
-      ${e.text ? `<p>${e.text}</p>` : ""}
-    </li>`).join("");
-
-const renderContact = () => {
-  const c = P.contact;
-  return `<div class="contact-info">
-      <p>Have a project or a role in mind? Send me a message.</p>
-      <ul class="contact-list">
-        <li><a href="mailto:${c.email}">${c.email}</a></li>
-        <li><a href="tel:${c.phone.replace(/\s/g, "")}">${c.phone}</a></li>
-        <li><a href="${c.linkedin}" target="_blank" rel="noopener">LinkedIn</a></li>
-        <li><a href="${c.github}" target="_blank" rel="noopener">GitHub</a></li>
-      </ul>
-    </div>
-    <form class="contact-form" id="contact-form">
-      <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <div class="field">
-        <label for="cf-name">Name</label>
-        <input id="cf-name" name="name" type="text" autocomplete="name" placeholder="Your name" required maxlength="80">
-      </div>
-      <div class="field">
-        <label for="cf-service">Service</label>
-        <select id="cf-service" name="service" required>
-          <option value="" disabled selected>Select a service</option>
-          <option>Web Development</option>
-          <option>Shopify Development</option>
-          <option>Other</option>
-        </select>
-      </div>
-      <div class="field">
-        <label for="cf-email">Email</label>
-        <input id="cf-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required maxlength="120">
-      </div>
-      <div class="field">
-        <label for="cf-phone">Phone <span class="meta">(optional)</span></label>
-        <input id="cf-phone" name="phone" type="tel" autocomplete="tel" placeholder="+92 300 1234567" maxlength="20">
-      </div>
-      <button class="btn btn-primary" id="cf-submit" type="submit">Send message</button>
-      <p class="form-status" id="cf-status" role="status" aria-live="polite"></p>
-    </form>`;
-};
+const DEVICES = Render.DEVICES;
 
 /* Contact form: sends the data to the owner's email through Web3Forms (no backend needed). */
 const setupContactForm = () => {
@@ -318,23 +210,12 @@ const setupActiveNav = () => {
   document.querySelectorAll("section.block").forEach((s) => observer.observe(s));
 };
 
-$("brand").textContent = P.name;
-$("status-text").textContent = P.status;
-$("hero-title").textContent = P.heroTitle;
-$("hero-intro").textContent = P.heroIntro;
+/* Fill every content slot from data.js. The same HTML is already in index.html (scripts/prerender.js),
+   so this only matters when data.js changed and the prerender has not been run again. */
+Object.entries(Render.sections(P)).forEach(([id, html]) => { $(id).innerHTML = html; });
 $("cv-link").href = P.contact.cv;
 $("photo").src = P.photo;
 $("photo").alt = `Portrait of ${P.name}`;
-$("byline-name").textContent = P.name;
-$("byline-meta").textContent = `${P.role}, ${P.location}`;
-$("about-body").innerHTML = P.about.map((t) => `<p>${t}</p>`).join("");
-$("skills-body").innerHTML = renderSkills();
-$("projects-body").innerHTML = renderProjects();
-$("live-body").innerHTML = renderLive();
-$("experience-body").innerHTML = renderExperience();
-$("contact-body").innerHTML = renderContact();
-$("footer-text").textContent = `© ${new Date().getFullYear()} ${P.name}. ${P.role}, ${P.location}.`;
-$("footer-built").innerHTML = `Built with HTML, CSS and JavaScript, no framework and no build step. <a href="${P.repo}" target="_blank" rel="noopener">View the source on GitHub</a>`;
 
 setupMenu();
 setupInspector();

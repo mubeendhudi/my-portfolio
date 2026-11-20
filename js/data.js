@@ -9,7 +9,7 @@ const PORTFOLIO = {
   name: "Mubeen Yousaf",
   role: "Frontend & Shopify Developer",
   location: "Lahore, Pakistan",
-  photo: "assets/profile.jpeg", // replace the file in /assets to change your photo
+  photo: "assets/profile-176.webp", // small copy of assets/profile.jpeg (shown at 88px)
   status: "Open to remote jobs and freelance work",
   repo: "https://github.com/mubeendhudi/my-portfolio", // "View source" link in the footer
 
@@ -54,7 +54,7 @@ const PORTFOLIO = {
 
   /* Live project cards.
      preview: "live"                       -> shows the real site as a small preview (works for GitHub Pages)
-     preview: "assets/previews/name.jpg"   -> shows a screenshot (needed for Shopify, which blocks embedding)
+     preview: "assets/previews/name.webp"  -> shows a screenshot (needed for Shopify, which blocks embedding; keep it a ~960px wide WebP)
      password: only for password-protected Shopify stores. Remove the line if none. */
   liveProjects: [
     {
@@ -80,7 +80,7 @@ const PORTFOLIO = {
       stack: ["Shopify", "Liquid", "CSS"],
       url: "https://myd-store-8iycb5qv.myshopify.com/",
       password: "0000",
-      preview: "assets/previews/store-1.png"
+      preview: "assets/previews/store-1.webp"
     },
     {
       title: "Shopify Store 2",
@@ -89,7 +89,7 @@ const PORTFOLIO = {
       stack: ["Shopify", "Liquid", "CSS"],
       url: "https://store-872lahl8.myshopify.com/",
       password: "0000",
-      preview: "assets/previews/store-2.png"
+      preview: "assets/previews/store-2.webp"
     }
   ],
 
@@ -109,3 +109,5 @@ const PORTFOLIO = {
     adsConversion: ""
   }
 };
+
+if (typeof module !== "undefined") module.exports = PORTFOLIO;

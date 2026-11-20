@@ -1,0 +1,4 @@
+# Static site: the build step only writes js/data.js content into index.html (no dependencies).
+[build]
+  publish = "."
+  command = "node scripts/prerender.js"

@@ -1,0 +1,12 @@
+{
+  "name": "Mubeen Yousaf – Frontend & Shopify Developer",
+  "short_name": "Mubeen Yousaf",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#080d1c",
+  "theme_color": "#080d1c",
+  "icons": [
+    { "src": "/assets/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/assets/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}

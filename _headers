@@ -1,0 +1,20 @@
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Strict-Transport-Security: max-age=31536000
+
+# Images, icons and the CV rarely change: cache for a week, then revalidate in the background
+/assets/*
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+# CSS and JS have no hashed file names, so keep the cache short
+/css/*
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+/js/*
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+
+# Build helper, not a page
+/scripts/*
+  X-Robots-Tag: noindex

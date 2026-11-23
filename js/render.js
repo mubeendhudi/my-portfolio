@@ -34,6 +34,37 @@ const Render = (() => {
       </div>
     </article>`).join("");
 
+  /* Flagship project: a large screenshot in a browser frame, then why it matters, features and stack. */
+  const featured = (P) => {
+    const f = P.featured;
+    const host = f.url.replace(/^https?:\/\//, "").replace(/\/$/, "");
+    return `
+    <article class="flagship">
+      <a class="flagship-shot" href="${esc(f.url)}" target="_blank" rel="noopener noreferrer" aria-label="Open ${esc(f.title)} in a new tab">
+        <span class="browser-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="url">${esc(host)}</span></span>
+        <img src="${esc(f.preview)}" alt="${esc(f.title)} report: overall score, section scores and a prioritised fix list for a Shopify store" width="1280" height="680" loading="lazy" decoding="async">
+      </a>
+      <div class="flagship-intro">
+        <p class="flagship-badge">${esc(f.badge)}</p>
+        <div class="row"><h3>${esc(f.title)}</h3><span class="meta">${esc(f.year)}</span></div>
+        <p class="flagship-tagline">${esc(f.tagline)}</p>
+        <p>${esc(f.summary)}</p>
+        <ul class="chips">${chips(f.stack, "small")}</ul>
+        <div class="actions"><a class="btn btn-primary" href="${esc(f.url)}" target="_blank" rel="noopener noreferrer">Try it live</a></div>
+      </div>
+      <div class="flagship-detail">
+        <div>
+          <h4>Why store owners need it</h4>
+          ${list(f.why)}
+        </div>
+        <div>
+          <h4>Key features</h4>
+          ${list(f.features)}
+        </div>
+      </div>
+    </article>`;
+  };
+
   /* Live project cards, drawn as a small browser window.
      "live" previews embed the real site in an iframe with a screen-size switch; anything else is a screenshot path. */
   const DEVICES = { mobile: [375, 667], tablet: [768, 1024], desktop: [1280, 800] };
@@ -129,6 +160,7 @@ const Render = (() => {
     "byline-meta": esc(`${P.role}, ${P.location}`),
     "about-body": P.about.map((t) => `<p>${esc(t)}</p>`).join(""),
     "skills-body": skills(P),
+    "featured-body": featured(P),
     "projects-body": projects(P),
     "live-body": live(P),
     "experience-body": experience(P),
@@ -182,6 +214,17 @@ const Render = (() => {
           inLanguage: "en"
         },
         person,
+        {
+          "@type": "WebApplication",
+          "@id": `${SITE}#flagship`,
+          name: P.featured.title,
+          description: P.featured.tagline,
+          url: P.featured.url,
+          applicationCategory: "BusinessApplication",
+          operatingSystem: "Any (web browser)",
+          offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+          creator: { "@id": `${SITE}#person` }
+        },
         {
           "@type": "ItemList",
           "@id": `${SITE}#projects`,

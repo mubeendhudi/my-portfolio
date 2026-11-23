@@ -628,6 +628,122 @@ button.line:focus-visible {
   font-weight: 600;
 }
 
+/* Flagship project: big screenshot + intro side by side, details in two columns below */
+.flagship {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 3.5vw, 2.75rem);
+  padding: clamp(1.1rem, 2.5vw, 1.75rem);
+  border: 1px solid transparent;
+  border-radius: 20px;
+  background:
+    linear-gradient(rgba(10, 16, 34, .96), rgba(10, 16, 34, .96)) padding-box,
+    var(--grad) border-box;
+  box-shadow: 0 30px 70px -30px rgba(90, 162, 255, .45);
+}
+
+.flagship-shot {
+  display: block;
+  align-self: start;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--bg);
+  text-decoration: none;
+  transition: transform .25s, box-shadow .25s;
+}
+
+.flagship-shot:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 44px -16px rgba(90, 162, 255, .5);
+}
+
+.flagship-shot:focus-visible {
+  outline-offset: 3px;
+}
+
+.flagship-shot .browser-bar {
+  justify-content: flex-start;
+  min-height: 36px;
+  padding: .4rem .8rem;
+}
+
+.flagship-shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.flagship-intro {
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+}
+
+.flagship-intro p,
+.flagship-intro .chips {
+  margin: 0;
+}
+
+.flagship-badge {
+  align-self: flex-start;
+  padding: .25rem .8rem;
+  border-radius: 999px;
+  background: var(--grad);
+  color: var(--on-accent);
+  font-size: .85rem;
+  font-weight: 700;
+}
+
+.flagship-intro h3 {
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+}
+
+.flagship-tagline {
+  color: var(--ink);
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.flagship-intro > p:not(.flagship-tagline):not(.flagship-badge) {
+  color: var(--muted);
+}
+
+.flagship-intro .actions {
+  margin-top: auto;
+  padding-top: .5rem;
+}
+
+.flagship-detail {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem clamp(1.5rem, 4vw, 3rem);
+  padding-top: clamp(1.25rem, 2.5vw, 1.75rem);
+  border-top: 1px solid var(--line);
+}
+
+.flagship-detail h4 {
+  margin: 0 0 .75rem;
+  font: 700 1.05rem var(--font-head);
+}
+
+.flagship-detail ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  list-style: disc;
+}
+
+.flagship-detail li + li {
+  margin-top: .45rem;
+}
+
+.flagship-detail li::marker {
+  color: var(--accent);
+}
+
 /* Live project cards, drawn as a browser window */
 .live-grid {
   display: grid;
@@ -997,6 +1113,10 @@ code {
     max-width: 18ch;
   }
 
+  .flagship {
+    grid-template-columns: 1fr;
+  }
+
   nav {
     gap: 1.1rem;
   }
@@ -1074,6 +1194,7 @@ code {
   }
 
   .skills,
+  .flagship-detail,
   .live-grid,
   .contact,
   .project {

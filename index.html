@@ -140,6 +140,23 @@
       }
     },
     {
+      "@type": "WebApplication",
+      "@id": "https://mubeenyousaf.site/#flagship",
+      "name": "Store Audit Checker",
+      "description": "A free audit tool that tells Shopify store owners what is slowing their store down and how to fix it.",
+      "url": "https://store-audit-checker.vercel.app/",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Any (web browser)",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "creator": {
+        "@id": "https://mubeenyousaf.site/#person"
+      }
+    },
+    {
       "@type": "ItemList",
       "@id": "https://mubeenyousaf.site/#projects",
       "name": "Live projects",
@@ -212,6 +229,7 @@
   <header class="site-header">
     <a class="brand" href="#top" id="brand"><!--#brand-->Mubeen Yousaf<!--/#brand--></a>
     <nav id="site-nav" aria-label="Main">
+      <a href="#featured">Flagship</a>
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
@@ -238,6 +256,7 @@
         <p class="lead" id="hero-intro"><!--#hero-intro-->I'm a frontend developer working with HTML, CSS, JavaScript, React and Liquid. I'm open to remote jobs and freelance projects, and I'm learning full-stack development next.<!--/#hero-intro--></p>
         <div class="actions" id="hero-actions">
           <a class="btn btn-primary" href="#contact">Contact me</a>
+          <a class="btn" href="#featured">See my flagship project</a>
           <a class="btn" id="cv-link" href="assets/Mubeen%20Yousaf%20Dev.pdf" download>Download CV</a>
         </div>
         <div class="byline" id="hero-byline">
@@ -255,6 +274,36 @@
         <ol class="code" id="hero-code"></ol>
         <p class="code-hint">How I would write this hero as a Shopify section. Point at a line to see what it renders.</p>
       </figure>
+    </section>
+
+    <section id="featured" class="block" aria-labelledby="featured-title">
+      <h2 id="featured-title">Flagship project</h2>
+      <p class="section-note">My own product idea, from problem to live app. I designed, built, tested and deployed it from scratch.</p>
+      <div id="featured-body"><!--#featured-body-->
+    <article class="flagship">
+      <a class="flagship-shot" href="https://store-audit-checker.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Open Store Audit Checker in a new tab">
+        <span class="browser-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="url">store-audit-checker.vercel.app</span></span>
+        <img src="assets/previews/store-audit-checker.webp" alt="Store Audit Checker report: overall score, section scores and a prioritised fix list for a Shopify store" width="1280" height="680" loading="lazy" decoding="async">
+      </a>
+      <div class="flagship-intro">
+        <p class="flagship-badge">Original idea, designed and built solo</p>
+        <div class="row"><h3>Store Audit Checker</h3><span class="meta">2026</span></div>
+        <p class="flagship-tagline">A free audit tool that tells Shopify store owners what is slowing their store down and how to fix it.</p>
+        <p>Enter a Shopify store URL and the tool tests the whole store, not just the homepage: products, collections, content pages, a blog post and the cart. In a few minutes it returns a score out of 100, section scores and a prioritised list of fixes.</p>
+        <ul class="chips"><li class="chip small">React 19</li><li class="chip small">Vite</li><li class="chip small">Node.js</li><li class="chip small">Express 5</li><li class="chip small">Cheerio</li><li class="chip small">PageSpeed Insights API</li><li class="chip small">Vercel</li></ul>
+        <div class="actions"><a class="btn btn-primary" href="https://store-audit-checker.vercel.app/" target="_blank" rel="noopener noreferrer">Try it live</a></div>
+      </div>
+      <div class="flagship-detail">
+        <div>
+          <h4>Why store owners need it</h4>
+          <ul><li>Slow pages, heavy apps and missing SEO tags cost sales, but PageSpeed and Lighthouse reports are written for developers. This turns them into plain-language fixes a store owner can act on.</li><li>Each fix is ranked High, Medium or Low impact, explains why it matters, shows the evidence and lists the pages it was found on.</li><li>The report exports to a clean A4 PDF, ready to send to a developer or agency.</li></ul>
+        </div>
+        <div>
+          <h4>Key features</h4>
+          <ul><li>Whole-store audit: reads the sitemap and samples about a dozen pages across every theme template</li><li>Speed and Core Web Vitals from Google PageSpeed Insights (Lighthouse 13)</li><li>Checks for render-blocking scripts and app bloat, images, SEO, mobile and accessibility</li><li>Weighted scoring across six sections, with a clear pass, warn or fail for every check</li><li>Safe server-side fetching: blocks private networks and DNS rebinding, with rate limits and caching</li><li>Keyboard and screen-reader friendly, with automated unit tests for the checks, scoring and URL safety</li></ul>
+        </div>
+      </div>
+    </article><!--/#featured-body--></div>
     </section>
 
     <section id="about" class="block" aria-labelledby="about-title">
@@ -306,7 +355,7 @@
 
     <section id="live" class="block" aria-labelledby="live-title">
       <h2 id="live-title">Live projects</h2>
-      <p class="section-note">These are the real sites, loaded live. Switch the screen size to check the responsive layout.</p>
+      <p class="section-note">Practice builds I made while learning: frontend site clones and Shopify storefronts. These are the real sites, loaded live. Switch the screen size to check the responsive layout.</p>
       <div id="live-body" class="live-grid"><!--#live-body-->
     <article class="live-card">
       <div class="browser-bar">

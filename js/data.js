@@ -27,6 +27,33 @@ const PORTFOLIO = {
     { group: "Learning next", items: ["Node.js and Express", "PostgreSQL and MongoDB", "Shopify app development (Remix, GraphQL)", "AWS and Docker", "AI workflows and automation"] }
   ],
 
+  /* Flagship project: shown in its own large section right below the hero.
+     preview: a 1280x680 WebP screenshot in assets/previews/. */
+  featured: {
+    title: "Store Audit Checker",
+    badge: "Original idea, designed and built solo",
+    year: "2026",
+    tagline: "A free audit tool that tells Shopify store owners what is slowing their store down and how to fix it.",
+    summary:
+      "Enter a Shopify store URL and the tool tests the whole store, not just the homepage: products, collections, content pages, a blog post and the cart. In a few minutes it returns a score out of 100, section scores and a prioritised list of fixes.",
+    url: "https://store-audit-checker.vercel.app/",
+    preview: "assets/previews/store-audit-checker.webp",
+    why: [
+      "Slow pages, heavy apps and missing SEO tags cost sales, but PageSpeed and Lighthouse reports are written for developers. This turns them into plain-language fixes a store owner can act on.",
+      "Each fix is ranked High, Medium or Low impact, explains why it matters, shows the evidence and lists the pages it was found on.",
+      "The report exports to a clean A4 PDF, ready to send to a developer or agency."
+    ],
+    features: [
+      "Whole-store audit: reads the sitemap and samples about a dozen pages across every theme template",
+      "Speed and Core Web Vitals from Google PageSpeed Insights (Lighthouse 13)",
+      "Checks for render-blocking scripts and app bloat, images, SEO, mobile and accessibility",
+      "Weighted scoring across six sections, with a clear pass, warn or fail for every check",
+      "Safe server-side fetching: blocks private networks and DNS rebinding, with rate limits and caching",
+      "Keyboard and screen-reader friendly, with automated unit tests for the checks, scoring and URL safety"
+    ],
+    stack: ["React 19", "Vite", "Node.js", "Express 5", "Cheerio", "PageSpeed Insights API", "Vercel"]
+  },
+
   projects: [
     {
       title: "Custom Shopify store development",
